@@ -137,6 +137,6 @@ class __TwigTemplate_efe90f426498a5d5bb7eac545b52e74d extends Template
         {% endfor %}
     </tbody>
 </table>
-", "@WebProfiler/Profiler/table.html.twig", "/home/isaac/projects/projeto-rest/vendor/symfony/web-profiler-bundle/Resources/views/Profiler/table.html.twig");
+", "@WebProfiler/Profiler/table.html.twig", "/home/isaac/projects/rest-pdf/vendor/symfony/web-profiler-bundle/Resources/views/Profiler/table.html.twig");
     }
 }

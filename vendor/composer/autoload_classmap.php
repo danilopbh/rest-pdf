@@ -6,6 +6,8 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
+    'App\\Controller\\ApiSuppController' => $baseDir . '/src/Controller/ApiSuppController.php',
+    'App\\Controller\\DataCopyController' => $baseDir . '/src/Controller/DataCopyController.php',
     'App\\DataFixtures\\AppFixtures' => $baseDir . '/src/DataFixtures/AppFixtures.php',
     'App\\DataFixtures\\LoadContribuinteSiatu' => $baseDir . '/src/DataFixtures/LoadContribuinteSiatu.php',
     'App\\Entity\\CdaSiatu' => $baseDir . '/src/Entity/CdaSiatu.php',
@@ -19,6 +21,16 @@ return array(
     'App\\Repository\\ContribuinteSuppRepository' => $baseDir . '/src/Repository/ContribuinteSuppRepository.php',
     'Collator' => $vendorDir . '/symfony/polyfill-intl-icu/Resources/stubs/Collator.php',
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
+    'Cron\\AbstractField' => $vendorDir . '/dragonmantank/cron-expression/src/Cron/AbstractField.php',
+    'Cron\\CronExpression' => $vendorDir . '/dragonmantank/cron-expression/src/Cron/CronExpression.php',
+    'Cron\\DayOfMonthField' => $vendorDir . '/dragonmantank/cron-expression/src/Cron/DayOfMonthField.php',
+    'Cron\\DayOfWeekField' => $vendorDir . '/dragonmantank/cron-expression/src/Cron/DayOfWeekField.php',
+    'Cron\\FieldFactory' => $vendorDir . '/dragonmantank/cron-expression/src/Cron/FieldFactory.php',
+    'Cron\\FieldFactoryInterface' => $vendorDir . '/dragonmantank/cron-expression/src/Cron/FieldFactoryInterface.php',
+    'Cron\\FieldInterface' => $vendorDir . '/dragonmantank/cron-expression/src/Cron/FieldInterface.php',
+    'Cron\\HoursField' => $vendorDir . '/dragonmantank/cron-expression/src/Cron/HoursField.php',
+    'Cron\\MinutesField' => $vendorDir . '/dragonmantank/cron-expression/src/Cron/MinutesField.php',
+    'Cron\\MonthField' => $vendorDir . '/dragonmantank/cron-expression/src/Cron/MonthField.php',
     'Datamatrix' => $vendorDir . '/tecnickcom/tcpdf/include/barcodes/datamatrix.php',
     'DeepCopy\\DeepCopy' => $vendorDir . '/myclabs/deep-copy/src/DeepCopy/DeepCopy.php',
     'DeepCopy\\Exception\\CloneException' => $vendorDir . '/myclabs/deep-copy/src/DeepCopy/Exception/CloneException.php',

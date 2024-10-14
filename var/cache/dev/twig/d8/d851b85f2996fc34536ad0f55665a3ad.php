@@ -669,6 +669,6 @@ class __TwigTemplate_1323226715c60f3477dbf7d8a5fa0d61 extends Template
         }());
     </script>
 {% endblock %}
-", "@WebProfiler/Profiler/layout.html.twig", "/home/isaac/projects/projeto-rest/vendor/symfony/web-profiler-bundle/Resources/views/Profiler/layout.html.twig");
+", "@WebProfiler/Profiler/layout.html.twig", "/home/isaac/projects/rest-pdf/vendor/symfony/web-profiler-bundle/Resources/views/Profiler/layout.html.twig");
     }
 }

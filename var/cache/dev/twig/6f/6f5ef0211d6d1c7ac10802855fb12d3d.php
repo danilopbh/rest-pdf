@@ -222,6 +222,6 @@ class __TwigTemplate_064ff74bae49a3e47abb58a58aa09037 extends Template
         {% block body %}{% endblock %}
     </body>
 </html>
-", "base.html.twig", "/home/isaac/projects/projeto-rest/templates/base.html.twig");
+", "base.html.twig", "/home/isaac/projects/rest-pdf/templates/base.html.twig");
     }
 }

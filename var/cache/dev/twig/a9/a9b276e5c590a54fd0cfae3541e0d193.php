@@ -1376,6 +1376,6 @@ class __TwigTemplate_1d5a054f4760f9df9cf9519d1e37f5aa extends Template
         <span>{{ route|default(controller) }}</span>
     {%- endif %}
 {% endmacro %}
-", "@WebProfiler/Collector/request.html.twig", "/home/isaac/projects/projeto-rest/vendor/symfony/web-profiler-bundle/Resources/views/Collector/request.html.twig");
+", "@WebProfiler/Collector/request.html.twig", "/home/isaac/projects/rest-pdf/vendor/symfony/web-profiler-bundle/Resources/views/Collector/request.html.twig");
     }
 }

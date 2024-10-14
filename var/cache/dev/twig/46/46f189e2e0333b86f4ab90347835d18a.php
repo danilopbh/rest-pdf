@@ -441,6 +441,6 @@ class __TwigTemplate_afa659ac649207e97ee338b16bd0ac52 extends Template
         </div>
     {% endfor %}
 {% endblock %}
-", "@Debug/Profiler/dump.html.twig", "/home/isaac/projects/projeto-rest/vendor/symfony/debug-bundle/Resources/views/Profiler/dump.html.twig");
+", "@Debug/Profiler/dump.html.twig", "/home/isaac/projects/rest-pdf/vendor/symfony/debug-bundle/Resources/views/Profiler/dump.html.twig");
     }
 }

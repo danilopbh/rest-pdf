@@ -1866,6 +1866,6 @@ class __TwigTemplate_18058778be1ae05516ff16b69b6b4eea extends Template
         </tbody>
     </table>
 {% endmacro %}
-", "@Doctrine/Collector/db.html.twig", "/home/isaac/projects/projeto-rest/vendor/doctrine/doctrine-bundle/templates/Collector/db.html.twig");
+", "@Doctrine/Collector/db.html.twig", "/home/isaac/projects/rest-pdf/vendor/doctrine/doctrine-bundle/templates/Collector/db.html.twig");
     }
 }

@@ -151,6 +151,10 @@ class ComposerStaticInitf2f3ea2b52dc1dc543fcff270d9d2335
             'Doctrine\\Bundle\\DoctrineBundle\\' => 31,
             'DeepCopy\\' => 9,
         ),
+        'C' => 
+        array (
+            'Cron\\' => 5,
+        ),
         'A' => 
         array (
             'App\\Tests\\' => 10,
@@ -553,6 +557,10 @@ class ComposerStaticInitf2f3ea2b52dc1dc543fcff270d9d2335
         array (
             0 => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy',
         ),
+        'Cron\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron',
+        ),
         'App\\Tests\\' => 
         array (
             0 => __DIR__ . '/../..' . '/tests',
@@ -564,6 +572,8 @@ class ComposerStaticInitf2f3ea2b52dc1dc543fcff270d9d2335
     );
 
     public static $classMap = array (
+        'App\\Controller\\ApiSuppController' => __DIR__ . '/../..' . '/src/Controller/ApiSuppController.php',
+        'App\\Controller\\DataCopyController' => __DIR__ . '/../..' . '/src/Controller/DataCopyController.php',
         'App\\DataFixtures\\AppFixtures' => __DIR__ . '/../..' . '/src/DataFixtures/AppFixtures.php',
         'App\\DataFixtures\\LoadContribuinteSiatu' => __DIR__ . '/../..' . '/src/DataFixtures/LoadContribuinteSiatu.php',
         'App\\Entity\\CdaSiatu' => __DIR__ . '/../..' . '/src/Entity/CdaSiatu.php',
@@ -577,6 +587,16 @@ class ComposerStaticInitf2f3ea2b52dc1dc543fcff270d9d2335
         'App\\Repository\\ContribuinteSuppRepository' => __DIR__ . '/../..' . '/src/Repository/ContribuinteSuppRepository.php',
         'Collator' => __DIR__ . '/..' . '/symfony/polyfill-intl-icu/Resources/stubs/Collator.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
+        'Cron\\AbstractField' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/AbstractField.php',
+        'Cron\\CronExpression' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/CronExpression.php',
+        'Cron\\DayOfMonthField' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/DayOfMonthField.php',
+        'Cron\\DayOfWeekField' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/DayOfWeekField.php',
+        'Cron\\FieldFactory' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/FieldFactory.php',
+        'Cron\\FieldFactoryInterface' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/FieldFactoryInterface.php',
+        'Cron\\FieldInterface' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/FieldInterface.php',
+        'Cron\\HoursField' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/HoursField.php',
+        'Cron\\MinutesField' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/MinutesField.php',
+        'Cron\\MonthField' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/MonthField.php',
         'Datamatrix' => __DIR__ . '/..' . '/tecnickcom/tcpdf/include/barcodes/datamatrix.php',
         'DeepCopy\\DeepCopy' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/DeepCopy.php',
         'DeepCopy\\Exception\\CloneException' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/Exception/CloneException.php',
