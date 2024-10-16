@@ -1,0 +1,131 @@
+<div *ngIf="data$ | async as data; else loading">
+    <h2>Dados da tabela [cda_siatu]</h2>
+    <button mat-raised-button color="accent" (click)="showCdaSiatu = !showCdaSiatu">{{showCdaSiatu ? 'Esconder' : 'Mostrar'}} Tabela</button>
+    <ng-container *ngIf="showCdaSiatu">
+        <table *ngIf="data.cda_siatu.length > 0; else noDataCdaSiatu">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Descrição</th>
+                    <th>Valor</th>
+                    <th>Data de Vencimento</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of data.cda_siatu | slice: pageIndex * pageSize : (pageIndex + 1) * pageSize">
+                    <td>{{item.id}}</td>
+                    <td>{{item.descricao}}</td>
+                    <td>{{"R$ "+item.valor}}</td>
+                    <td>{{item.dataVencimento}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <ng-template #noDataCdaSiatu>
+            <p>A tabela cda_siatu está sem dados.</p>
+        </ng-template>
+    </ng-container>
+
+    <h2>Dados da tabela [contribuinte_siatu]</h2>
+    <button mat-raised-button color="accent" (click)="showContribuinteSiatu = !showContribuinteSiatu">{{ showContribuinteSiatu ? 'Esconder' : 'Mostrar' }} Tabela</button>
+    <ng-container *ngIf="showContribuinteSiatu">
+        <table *ngIf="data.contribuinte_siatu.length > 0; else noDataContribuinteSiatu">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>CPF</th>
+                    <th>Endereço</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of data.contribuinte_siatu | slice: pageIndex * pageSize : (pageIndex + 1) * pageSize">
+                    <td>{{item.id}}</td>
+                    <td>{{item.nome}}</td>
+                    <td>{{item.cpf}}</td>
+                    <td>{{item.endereco}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <ng-template #noDataContribuinteSiatu>
+            <p>A tabela contribuinte_siatu está sem dados.</p>
+        </ng-template>
+    </ng-container>
+
+    <h2>Dados da tabela [cda_supp]</h2>
+    <button mat-raised-button color="accent" (click)="showCdaSupp = !showCdaSupp">{{showCdaSupp ? 'Esconder' : 'Mostrar'}} Tabela</button>
+    <ng-container *ngIf="showCdaSupp">
+        <table *ngIf="data.cda_supp.length > 0; else noDataCdaSupp">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Descrição</th>
+                    <th>Valor</th>
+                    <th>Data de Vencimento</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of data.cda_supp | slice: pageIndex * pageSize : (pageIndex + 1) * pageSize">
+                    <td>{{item.id}}</td>
+                    <td>{{item.descricao}}</td>
+                    <td>{{"R$ "+item.valor}}</td>
+                    <td>{{item.dataVencimento}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <ng-template #noDataCdaSupp>
+            <p>A tabela cda_supp está sem dados.</p>
+        </ng-template>
+    </ng-container>
+
+    <h2>Dados da tabela [contribuinte_supp]</h2>
+    <button mat-raised-button color="accent" (click)="showContribuinteSupp = !showContribuinteSupp">{{ showContribuinteSupp ? 'Esconder' : 'Mostrar' }} Tabela</button>
+    <ng-container *ngIf="showContribuinteSupp">
+        <table *ngIf="data.contribuinte_supp.length > 0; else noDataContribuinteSupp">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>CPF</th>
+                    <th>Endereço</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of data.contribuinte_supp | slice: pageIndex * pageSize : (pageIndex + 1) * pageSize">
+                    <td>{{item.id}}</td>
+                    <td>{{item.nome}}</td>
+                    <td>{{item.cpf}}</td>
+                    <td>{{item.endereco}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <ng-template #noDataContribuinteSupp>
+            <p>A tabela contribuinte_supp está sem dados.</p>
+        </ng-template>
+    </ng-container>
+    
+    <!--
+    <label for="itemsPerPage">Itens por página:</label>
+    <select id="itemsPerPage" [ngModel]="pageSize" (ngModelChange)="onPageChange({ pageIndex: 0, pageSize: $event })">
+        <option *ngFor="let size of [5, 10, 20]" [value]="size">{{ size }}</option>
+    </select>
+    -->
+
+    <mat-toolbar>
+        <span>Selecione o número de itens por página:</span>
+        <select id="itemsPerPage" [ngModel]="pageSize" (ngModelChange)="onPageChange({ pageIndex: 0, pageSize: $event })">
+            <option *ngFor="let size of [5, 10, 20]" [value]="size">{{ size }}</option>
+        </select>
+    </mat-toolbar>
+
+    <mat-paginator 
+        [length]="lengthSupp + lengthSiatu" 
+        [pageSize]="pageSize" 
+        [pageIndex]="pageIndex"
+        (page)="onPageChange($event)"
+        [showFirstLastButtons]="false">
+    </mat-paginator>
+
+    <ng-template #loading>
+        <p>Carregando dados...</p>
+    </ng-template>
+</div>
