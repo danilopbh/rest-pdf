@@ -61,6 +61,7 @@
                     <th>Descrição</th>
                     <th>Valor</th>
                     <th>Data de Vencimento</th>
+                    <th>Ações</th>
                 </tr>
             </thead>
             <tbody>
@@ -69,6 +70,11 @@
                     <td>{{item.descricao}}</td>
                     <td>{{"R$ "+item.valor}}</td>
                     <td>{{item.dataVencimento}}</td>
+                    <td>
+                        <button mat-icon-button (click)="openPdfModal(item.id)">
+                            <mat-icon>picture_as_pdf</mat-icon>
+                        </button>
+                    </td>
                 </tr>
             </tbody>
         </table>

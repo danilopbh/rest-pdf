@@ -67,6 +67,7 @@ class ApiSuppController extends AbstractController
         return new JsonResponse(['message' => 'Dados salvos com sucesso'], 201);
     }
 
+    /* Versão antiga
     private function generateDefaultPdf(CdaSupp $certidao): string
     {
         $pdf = new TCPDF();
@@ -75,30 +76,88 @@ class ApiSuppController extends AbstractController
         // Definir o conteúdo do PDF com informações padrão ou genéricas
         $html = '
         <h1>Certidão Padrão</h1>
-        <p><strong>Descrição:</strong> ' . $certidao->getDescricao() . '</p>
+        <p><strong>Descrição:</strong> ' . htmlspecialchars($certidao->getDescricao()) . '</p>
         <p><strong>Valor:</strong> R$ ' . number_format($certidao->getValor(), 2, ',', '.') . '</p>';
 
         $pdf->writeHTML($html);
 
         return $pdf->Output('certidao.pdf', 'S');
     }
+    */
 
-    #[Route('/export/pdf/{id}', name: 'export_pdf', methods: ['GET'])]
+    #[Route('/export/pdf/{id}', name: 'export_pdf', methods: ['GET', 'OPTIONS'])]
     public function exportPdfAction(int $id, ManagerRegistry $doctrine): Response
     {
         $em = $doctrine->getManager();
 
-        //Tenta encontrar a certidão pelo ID
+        // Tenta encontrar a certidão pelo ID
         $certidao = $em->getRepository(CdaSupp::class)->find($id);
 
         if (!$certidao) {
-            throw $this->createNotFoundException('Certidão não encontrada.');
+            return new JsonResponse(['error' => 'Certidão não encontrada.'], 404);
         }
 
-        //Chama o método para exportar e salvar o PDF
-        return $this->exportPdf($certidao);
+        // Verifica se o conteúdo do PDF existe no banco
+        if ($certidao->getPdfDivida()) {
+            // Gera o PDF a partir do conteúdo existente em Base64
+            return $this->generatePdfFromBase64($certidao);
+        } else {
+            // Gera um PDF padrão se não houver conteúdo no campo pdfDivida
+            return $this->generateDefaultPdf($certidao);
+        }
     }
 
+    // Método para gerar o PDF padrão
+    private function generateDefaultPdf(CdaSupp $certidao): Response
+    {
+        // Criar uma nova instância do TCPDF
+        $pdf = new TCPDF();
+        $pdf->SetMargins(15, 20, 15); // Definir margens
+        $pdf->AddPage();
+
+        // Definir o conteúdo do PDF com informações padrão ou genéricas
+        $html = '
+        <h1>Certidão Padrão</h1>
+        <p><strong>Descrição:</strong> ' . htmlspecialchars($certidao->getDescricao()) . '</p>
+        <p><strong>Valor:</strong> R$ ' . number_format($certidao->getValor(), 2, ',', '.') . '</p>
+        <p><strong>Data de Vencimento:</strong> ' . $certidao->getDataVencimento()->format('d-m-Y') . '</p>';
+
+        // Escrever o conteúdo HTML no PDF
+        $pdf->writeHTML($html);
+
+        // Fechar o PDF e obter o conteúdo como string binária
+        $pdfContent = $pdf->Output('certidao.pdf', 'S'); // 'S' indica que o conteúdo será retornado como string
+
+        // Definir cabeçalhos para o download do PDF
+        $response = new Response($pdfContent);
+        $response->headers->set('Content-Type', 'application/pdf');
+        $response->headers->set('Content-Disposition', 'inline; filename="certidao_' . $certidao->getId() . '.pdf"');
+        $response->headers->set('Content-Length', strlen($pdfContent));
+
+        return $response; // Retorna o PDF como resposta
+    }
+
+    // Método para gerar PDF a partir do conteúdo Base64
+    private function generatePdfFromBase64(CdaSupp $certidao): Response
+    {
+        // Decodificar o conteúdo Base64 do campo pdfDivida
+        $pdfContent = base64_decode($certidao->getPdfDivida());
+
+        if ($pdfContent === false) {
+            return new JsonResponse(['error' => 'Falha ao decodificar o PDF.'], 500);
+        }
+
+        // Definir cabeçalhos para o download do PDF
+        $response = new Response($pdfContent);
+        $response->headers->set('Content-Type', 'application/pdf');
+        $response->headers->set('Content-Disposition', 'inline; filename="certidao_' . $certidao->getId() . '.pdf"');
+        $response->headers->set('Content-Length', strlen($pdfContent));
+
+        return $response; // Retorna o PDF como resposta
+    }
+
+
+    /* Versão antiga
     public function exportPdf(CdaSupp $certidao): Response
     {
         //Decodificar o conteúdo Base64 do campo pdfDivida
@@ -127,21 +186,23 @@ class ApiSuppController extends AbstractController
 
         return $response; //Retorna o pdf como resposta
     }
+    */
 
     #[Route('/api/data', name: 'get_data', methods: ['GET', 'OPTIONS'])]
-    public function getData(EntityManagerInterface $entityManager): JsonResponse {
+    public function getData(EntityManagerInterface $entityManager): JsonResponse
+    {
         // Obtenha os dados de cada tabela
         $cdaSiatuData = $entityManager->getRepository(CdaSiatu::class)->findAll();
         $contribuinteSiatuData = $entityManager->getRepository(ContribuinteSiatu::class)->findAll();
         $cdaSuppData = $entityManager->getRepository(CdaSupp::class)->findAll();
         $contribuinteSuppData = $entityManager->getRepository(ContribuinteSupp::class)->findAll();
-    
+
         // Serializar os dados em arrays
         $cdaSiatuArray = array_map(fn($cda) => $this->serializeCda($cda), $cdaSiatuData);
         $contribuinteSiatuArray = array_map(fn($contribuinte) => $this->serializeContribuinte($contribuinte), $contribuinteSiatuData);
         $cdaSuppArray = array_map(fn($cda) => $this->serializeCda($cda), $cdaSuppData);
         $contribuinteSuppArray = array_map(fn($contribuinte) => $this->serializeContribuinte($contribuinte), $contribuinteSuppData);
-    
+
         // Retorne os dados serializados em JSON
         return new JsonResponse([
             'cda_siatu' => $cdaSiatuArray,
@@ -150,9 +211,10 @@ class ApiSuppController extends AbstractController
             'contribuinte_supp' => $contribuinteSuppArray,
         ]);
     }
-    
+
     // Ajuste para aceitar tanto CdaSiatu quanto CdaSupp
-    private function serializeCda(CdaSiatu|CdaSupp $cda): array {
+    private function serializeCda(CdaSiatu|CdaSupp $cda): array
+    {
         return [
             'id' => $cda->getId(),
             'descricao' => $cda->getDescricao(),
@@ -161,9 +223,10 @@ class ApiSuppController extends AbstractController
             'pdfDivida' => $cda->getPdfDivida() ? base64_encode($cda->getPdfDivida()) : null,
         ];
     }
-    
+
     // Função para serializar os dados de ContribuinteSiatu e ContribuinteSupp (mesma estrutura)
-    private function serializeContribuinte(ContribuinteSiatu|ContribuinteSupp $contribuinte): array {
+    private function serializeContribuinte(ContribuinteSiatu|ContribuinteSupp $contribuinte): array
+    {
         return [
             'id' => $contribuinte->getId(),
             'nome' => $contribuinte->getNome(),

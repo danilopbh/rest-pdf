@@ -38,3 +38,13 @@ mat-toolbar {
     margin-left: 16px;
   }
 }
+
+.mat-dialog-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+iframe {
+  border: none;
+}

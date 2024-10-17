@@ -11,14 +11,19 @@
 nelmio_cors:
     defaults:
         origin_regex: true
-        allow_origin: ['http://localhost:4200']  # Adicione o frontend Angular diretamente
+        allow_origin: ['http://localhost:4200']  # Adicione seu frontend aqui
         allow_methods: ['GET', 'OPTIONS', 'POST', 'PUT', 'PATCH', 'DELETE']
         allow_headers: ['Content-Type', 'Authorization']
         expose_headers: ['Link']
         max_age: 3600
+        allow_credentials: true
     paths:
-        '^/api/':  # Aplique as regras apenas às rotas da API
-            allow_origin: ['http://localhost:4200']  # Certifique-se de que isso está incluído
+        '^/api/':
+            allow_origin: ['http://localhost:4200']
             allow_methods: ['GET', 'OPTIONS', 'POST', 'PUT', 'DELETE']
             allow_headers: ['Content-Type', 'Authorization']
             expose_headers: ['Link']
+        '^/export/': # Assegure-se de incluir esta rota
+            allow_origin: ['http://localhost:4200']
+            allow_methods: ['GET', 'OPTIONS'] # Adicione OPTIONS se necessário
+            allow_headers: ['Content-Type', 'Authorization']

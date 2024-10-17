@@ -260,12 +260,25 @@
           <parameter>Link</parameter>
         </parameter>
       </parameter>
+      <parameter key="^/export/" type="collection">
+        <parameter key="allow_origin" type="collection">
+          <parameter>http://localhost:4200</parameter>
+        </parameter>
+        <parameter key="allow_methods" type="collection">
+          <parameter>GET</parameter>
+          <parameter>OPTIONS</parameter>
+        </parameter>
+        <parameter key="allow_headers" type="collection">
+          <parameter>content-type</parameter>
+          <parameter>authorization</parameter>
+        </parameter>
+      </parameter>
     </parameter>
     <parameter key="nelmio_cors.defaults" type="collection">
       <parameter key="allow_origin" type="collection">
         <parameter>http://localhost:4200</parameter>
       </parameter>
-      <parameter key="allow_credentials">false</parameter>
+      <parameter key="allow_credentials">true</parameter>
       <parameter key="allow_headers" type="collection">
         <parameter>content-type</parameter>
         <parameter>authorization</parameter>
@@ -6298,22 +6311,15 @@
         <argument key="doctrine" type="service_closure" id="doctrine"/>
       </argument>
     </service>
-    <service id=".service_locator.IOHaKvb" class="Symfony\Component\DependencyInjection\ServiceLocator">
-      <tag name="container.service_locator"/>
-      <argument type="collection">
-        <argument key="certidao" type="service_closure" id=".errored..service_locator.IOHaKvb.App\Entity\CdaSupp"/>
-      </argument>
-    </service>
     <service id=".service_locator.aKM6MDa" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="entityManager" type="service_closure" id="doctrine.orm.default_entity_manager"/>
       </argument>
     </service>
-    <service id=".service_locator.GOzNsh8" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.UpUnt9n" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
-        <argument key="App\Controller\ApiSuppController::exportPdf" type="service_closure" id=".service_locator.IOHaKvb"/>
         <argument key="App\Controller\ApiSuppController::exportPdfAction" type="service_closure" id=".service_locator.GQZbvNR"/>
         <argument key="App\Controller\ApiSuppController::getData" type="service_closure" id=".service_locator.aKM6MDa"/>
         <argument key="App\Controller\ApiSuppController::postSuppData" type="service_closure" id=".service_locator.t6i3vFk"/>
@@ -6322,7 +6328,6 @@
         <argument key="App\Kernel::registerContainerConfiguration" type="service_closure" id=".service_locator.xUrKPVU"/>
         <argument key="kernel::loadRoutes" type="service_closure" id=".service_locator.xUrKPVU"/>
         <argument key="kernel::registerContainerConfiguration" type="service_closure" id=".service_locator.xUrKPVU"/>
-        <argument key="App\Controller\ApiSuppController:exportPdf" type="service_closure" id=".service_locator.IOHaKvb"/>
         <argument key="App\Controller\ApiSuppController:exportPdfAction" type="service_closure" id=".service_locator.GQZbvNR"/>
         <argument key="App\Controller\ApiSuppController:getData" type="service_closure" id=".service_locator.aKM6MDa"/>
         <argument key="App\Controller\ApiSuppController:postSuppData" type="service_closure" id=".service_locator.t6i3vFk"/>
@@ -7120,12 +7125,12 @@
       <argument type="service" id="security.token_storage"/>
     </service>
     <service id="debug.argument_resolver.service.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
-      <argument type="service" id=".service_locator.GOzNsh8"/>
+      <argument type="service" id=".service_locator.UpUnt9n"/>
     </service>
     <service id="debug.argument_resolver.default.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver"/>
     <service id="debug.argument_resolver.variadic.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver"/>
     <service id="debug.argument_resolver.not_tagged_controller.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
-      <argument type="service" id=".service_locator.GOzNsh8"/>
+      <argument type="service" id=".service_locator.UpUnt9n"/>
     </service>
     <service id="debug.traced.messenger.bus.default.inner" class="Symfony\Component\Messenger\MessageBus">
       <argument type="iterator">
@@ -7145,7 +7150,6 @@
       </call>
     </service>
     <service id=".errored..service_locator.xUrKPVU.Symfony\Component\Config\Loader\LoaderInterface" class="Symfony\Component\Config\Loader\LoaderInterface"/>
-    <service id=".errored..service_locator.IOHaKvb.App\Entity\CdaSupp" class="App\Entity\CdaSupp"/>
     <service id=".console.command.about.lazy" class="Symfony\Component\Console\Command\LazyCommand">
       <argument>about</argument>
       <argument type="collection"/>
@@ -8151,7 +8155,7 @@
     <service id="Psr\Log\LoggerInterface" alias="monolog.logger"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.gSv9zYw" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.GOzNsh8"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.UpUnt9n"/>
     <service id="doctrine.id_generator_locator" alias=".service_locator.KLVvNIq"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="Psr\Log\LoggerInterface $requestLogger" alias="monolog.logger.request"/>
@@ -8172,7 +8176,7 @@
     <service id=".service_locator.80edgLI" alias="messenger.receiver_locator"/>
     <service id=".service_locator.h8Jkkd2" alias="messenger.retry_strategy_locator"/>
     <service id=".service_locator.0GV1BZZ" alias=".service_locator.gSv9zYw"/>
-    <service id=".service_locator.Bc0WNeS" alias=".service_locator.GOzNsh8"/>
+    <service id=".service_locator.eAbIgg2" alias=".service_locator.UpUnt9n"/>
     <service id=".service_locator.wKF4yn1" alias=".service_locator.19_mNxd"/>
     <service id=".service_locator.Za9MpXe" alias=".service_locator.y4dplYt"/>
     <service id=".service_locator.XW18Svm" alias=".service_locator.TcKhdzh"/>
@@ -8224,7 +8228,6 @@
     <service id=".service_locator.uo5c0SP" alias=".service_locator.xUrKPVU"/>
     <service id=".service_locator.hCumxIO" alias=".service_locator.t6i3vFk"/>
     <service id=".service_locator.FPFiL9q" alias=".service_locator.GQZbvNR"/>
-    <service id=".service_locator.XOvC3d." alias=".service_locator.IOHaKvb"/>
     <service id=".service_locator.bInR.ll" alias=".service_locator.aKM6MDa"/>
     <service id=".service_locator.eAaUVIw" alias=".service_locator.jIxfAsi"/>
     <service id=".service_locator.u6DWx23" alias=".service_locator.cXsfP3P"/>

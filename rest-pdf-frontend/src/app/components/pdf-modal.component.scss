@@ -1,0 +1,51 @@
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+button {
+  background-color: #f0f0f0;  // Cor de fundo padrão dos botões
+  color: #333;                // Cor do texto dos botões
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-weight: bold;
+  
+  &:hover {
+    background-color: #d3d3d3; // Cor de fundo quando o botão é hover
+  }
+}
+
+button.mat-button {
+  background-color: #007bff;  // Cor de fundo dos botões
+  color: white;               // Cor do texto dos botões
+
+  &:hover {
+    background-color: #0056b3;  // Cor ao passar o mouse sobre o botão
+  }
+}
+
+button.close-button {
+  background-color: #dc3545;  // Cor de fundo do botão "Fechar"
+  color: white;
+
+  &:hover {
+    background-color: #c82333;  // Cor ao passar o mouse sobre o botão "Fechar"
+  }
+}
+
+button.maximize-button {
+  background-color: #28a745;  // Cor de fundo do botão "Maximizar"
+  color: white;
+
+  &:hover {
+    background-color: #218838;  // Cor ao passar o mouse sobre o botão "Maximizar"
+  }
+}
