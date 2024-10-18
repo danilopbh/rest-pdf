@@ -1,4 +1,5 @@
 <div *ngIf="data$ | async as data; else loading">
+    <app-data-actions></app-data-actions>
     <h2>Dados da tabela [cda_siatu]</h2>
     <button mat-raised-button color="accent" (click)="showCdaSiatu = !showCdaSiatu">{{showCdaSiatu ? 'Esconder' : 'Mostrar'}} Tabela</button>
     <ng-container *ngIf="showCdaSiatu">

@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 
 class DataCopyController extends AbstractController {
-    #[Route('/api/sync-data', name: 'sync-data', methods: ['POST'])]
+    #[Route('/api/data/sync-data', name: 'sync-data', methods: ['POST'])]
     public function copyData(EntityManagerInterface $em): JsonResponse {
         // Obter os registros da tabela ContribuinteSiatu
         $contribuintesSiatu = $em->getRepository(ContribuinteSiatu::class)->findAll();

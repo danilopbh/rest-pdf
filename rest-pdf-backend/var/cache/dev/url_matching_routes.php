@@ -16,7 +16,8 @@ return [
         '/_profiler/open' => [[['_route' => '_profiler_open_file', '_controller' => 'web_profiler.controller.profiler::openAction'], null, null, null, false, false, null]],
         '/api/supp' => [[['_route' => 'api_supp_post', '_controller' => 'App\\Controller\\ApiSuppController::postSuppData'], null, ['POST' => 0], null, false, false, null]],
         '/api/data' => [[['_route' => 'get_data', '_controller' => 'App\\Controller\\ApiSuppController::getData'], null, ['GET' => 0, 'OPTIONS' => 1], null, false, false, null]],
-        '/api/sync-data' => [[['_route' => 'sync-data', '_controller' => 'App\\Controller\\DataCopyController::copyData'], null, ['POST' => 0], null, false, false, null]],
+        '/api/data/sync-data' => [[['_route' => 'sync-data', '_controller' => 'App\\Controller\\DataCopyController::copyData'], null, ['POST' => 0], null, false, false, null]],
+        '/api/data/load-fixtures' => [[['_route' => 'load_fixtures', '_controller' => 'App\\Controller\\FixturesController::loadFixtures'], null, ['POST' => 0], null, false, false, null]],
     ],
     [ // $regexpList
         0 => '{^(?'

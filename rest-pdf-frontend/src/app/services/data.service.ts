@@ -15,4 +15,14 @@ export class DataService {
     getData(): Observable<DataModel> {
         return this.http.get<DataModel>(this.apiUrl); // Requisição para a API do Symfony
     }
+
+    //Chama o endpoint para carregar as fixtures
+    loadFixtures(): Observable<any>{
+        return this.http.post(`${this.apiUrl}/load-fixtures`, {});
+    }
+
+    //Chama o endpoint para copiar os dados
+    copyData(): Observable<any> {
+        return this.http.post(`${this.apiUrl}/sync-data`, {});
+    }
 }

@@ -19,5 +19,6 @@ return [
     'api_supp_post' => [[], ['_controller' => 'App\\Controller\\ApiSuppController::postSuppData'], [], [['text', '/api/supp']], [], [], []],
     'export_pdf' => [['id'], ['_controller' => 'App\\Controller\\ApiSuppController::exportPdfAction'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/export/pdf']], [], [], []],
     'get_data' => [[], ['_controller' => 'App\\Controller\\ApiSuppController::getData'], [], [['text', '/api/data']], [], [], []],
-    'sync-data' => [[], ['_controller' => 'App\\Controller\\DataCopyController::copyData'], [], [['text', '/api/sync-data']], [], [], []],
+    'sync-data' => [[], ['_controller' => 'App\\Controller\\DataCopyController::copyData'], [], [['text', '/api/data/sync-data']], [], [], []],
+    'load_fixtures' => [[], ['_controller' => 'App\\Controller\\FixturesController::loadFixtures'], [], [['text', '/api/data/load-fixtures']], [], [], []],
 ];

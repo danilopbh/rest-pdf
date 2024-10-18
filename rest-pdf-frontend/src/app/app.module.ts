@@ -12,12 +12,15 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { PdfModalComponent } from './components/pdf-modal.component';
 import { MatIconModule } from '@angular/material/icon';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DataService } from './services/data.service';
+import { DataActionsComponent } from './components/data-actions.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DataDisplayComponent, // O componente deve estar aqui
-    PdfModalComponent //Declara o component do modal
+    PdfModalComponent, //Declara o component do modal
+    DataActionsComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +35,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatIconModule,
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [DataService],
   bootstrap: [AppComponent],
   entryComponents: [PdfModalComponent]
 })

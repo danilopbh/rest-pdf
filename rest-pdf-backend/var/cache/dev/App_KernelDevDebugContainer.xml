@@ -425,6 +425,13 @@
         <argument type="service" id=".service_locator.jIxfAsi.App\Controller\DataCopyController"/>
       </call>
     </service>
+    <service id="App\Controller\FixturesController" class="App\Controller\FixturesController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.jIxfAsi.App\Controller\FixturesController"/>
+      </call>
+    </service>
     <service id="App\DataFixtures\AppFixtures" class="App\DataFixtures\AppFixtures" autowire="true" autoconfigure="true">
       <tag name="doctrine.fixture.orm"/>
     </service>
@@ -5915,6 +5922,9 @@
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\DataCopyController" class="App\Controller\DataCopyController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\DataCopyController" class="App\Controller\DataCopyController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\DataCopyController" class="App\Controller\DataCopyController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\FixturesController" class="App\Controller\FixturesController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\FixturesController" class="App\Controller\FixturesController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\FixturesController" class="App\Controller\FixturesController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\FixturesBundle\ORMFixtureInterface.0.App\DataFixtures\AppFixtures" class="App\DataFixtures\AppFixtures" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\DataFixtures\AppFixtures" class="App\DataFixtures\AppFixtures" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\FixturesBundle\ORMFixtureInterface.0.App\DataFixtures\LoadContribuinteSiatu" class="App\DataFixtures\LoadContribuinteSiatu" autowire="true" abstract="true"/>
@@ -6317,13 +6327,20 @@
         <argument key="entityManager" type="service_closure" id="doctrine.orm.default_entity_manager"/>
       </argument>
     </service>
-    <service id=".service_locator.UpUnt9n" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.6H7qA2B" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="kernel" type="service_closure" id="kernel"/>
+      </argument>
+    </service>
+    <service id=".service_locator.RyiILcF" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Controller\ApiSuppController::exportPdfAction" type="service_closure" id=".service_locator.GQZbvNR"/>
         <argument key="App\Controller\ApiSuppController::getData" type="service_closure" id=".service_locator.aKM6MDa"/>
         <argument key="App\Controller\ApiSuppController::postSuppData" type="service_closure" id=".service_locator.t6i3vFk"/>
         <argument key="App\Controller\DataCopyController::copyData" type="service_closure" id=".service_locator.t6i3vFk"/>
+        <argument key="App\Controller\FixturesController::loadFixtures" type="service_closure" id=".service_locator.6H7qA2B"/>
         <argument key="App\Kernel::loadRoutes" type="service_closure" id=".service_locator.xUrKPVU"/>
         <argument key="App\Kernel::registerContainerConfiguration" type="service_closure" id=".service_locator.xUrKPVU"/>
         <argument key="kernel::loadRoutes" type="service_closure" id=".service_locator.xUrKPVU"/>
@@ -6332,6 +6349,7 @@
         <argument key="App\Controller\ApiSuppController:getData" type="service_closure" id=".service_locator.aKM6MDa"/>
         <argument key="App\Controller\ApiSuppController:postSuppData" type="service_closure" id=".service_locator.t6i3vFk"/>
         <argument key="App\Controller\DataCopyController:copyData" type="service_closure" id=".service_locator.t6i3vFk"/>
+        <argument key="App\Controller\FixturesController:loadFixtures" type="service_closure" id=".service_locator.6H7qA2B"/>
         <argument key="kernel:loadRoutes" type="service_closure" id=".service_locator.xUrKPVU"/>
         <argument key="kernel:registerContainerConfiguration" type="service_closure" id=".service_locator.xUrKPVU"/>
       </argument>
@@ -6871,6 +6889,12 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.jIxfAsi" method="withContext"/>
     </service>
+    <service id=".service_locator.jIxfAsi.App\Controller\FixturesController" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\FixturesController"/>
+      <argument>App\Controller\FixturesController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.jIxfAsi" method="withContext"/>
+    </service>
     <service id=".service_locator.wSgjnB6" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -7125,12 +7149,12 @@
       <argument type="service" id="security.token_storage"/>
     </service>
     <service id="debug.argument_resolver.service.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
-      <argument type="service" id=".service_locator.UpUnt9n"/>
+      <argument type="service" id=".service_locator.RyiILcF"/>
     </service>
     <service id="debug.argument_resolver.default.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver"/>
     <service id="debug.argument_resolver.variadic.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver"/>
     <service id="debug.argument_resolver.not_tagged_controller.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
-      <argument type="service" id=".service_locator.UpUnt9n"/>
+      <argument type="service" id=".service_locator.RyiILcF"/>
     </service>
     <service id="debug.traced.messenger.bus.default.inner" class="Symfony\Component\Messenger\MessageBus">
       <argument type="iterator">
@@ -8155,7 +8179,7 @@
     <service id="Psr\Log\LoggerInterface" alias="monolog.logger"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.gSv9zYw" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.UpUnt9n"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.RyiILcF"/>
     <service id="doctrine.id_generator_locator" alias=".service_locator.KLVvNIq"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="Psr\Log\LoggerInterface $requestLogger" alias="monolog.logger.request"/>
@@ -8176,7 +8200,7 @@
     <service id=".service_locator.80edgLI" alias="messenger.receiver_locator"/>
     <service id=".service_locator.h8Jkkd2" alias="messenger.retry_strategy_locator"/>
     <service id=".service_locator.0GV1BZZ" alias=".service_locator.gSv9zYw"/>
-    <service id=".service_locator.eAbIgg2" alias=".service_locator.UpUnt9n"/>
+    <service id=".service_locator.buxGmbg" alias=".service_locator.RyiILcF"/>
     <service id=".service_locator.wKF4yn1" alias=".service_locator.19_mNxd"/>
     <service id=".service_locator.Za9MpXe" alias=".service_locator.y4dplYt"/>
     <service id=".service_locator.XW18Svm" alias=".service_locator.TcKhdzh"/>
@@ -8229,6 +8253,7 @@
     <service id=".service_locator.hCumxIO" alias=".service_locator.t6i3vFk"/>
     <service id=".service_locator.FPFiL9q" alias=".service_locator.GQZbvNR"/>
     <service id=".service_locator.bInR.ll" alias=".service_locator.aKM6MDa"/>
+    <service id=".service_locator.4Nh8kgC" alias=".service_locator.6H7qA2B"/>
     <service id=".service_locator.eAaUVIw" alias=".service_locator.jIxfAsi"/>
     <service id=".service_locator.u6DWx23" alias=".service_locator.cXsfP3P"/>
     <service id=".service_locator.pFwChgS" alias=".service_locator.UkE3SaZ"/>
